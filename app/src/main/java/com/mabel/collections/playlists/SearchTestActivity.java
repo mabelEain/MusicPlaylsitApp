@@ -18,7 +18,6 @@ public class SearchTestActivity extends AppCompatActivity {
 
         final SearchAutocompleteView trackname = (SearchAutocompleteView) findViewById(R.id.load_track);
         trackname.setThreshold(1);
-        trackname.setBackgroundResource(R.color.background);
         trackname.setAdapter(new AutoSyncSearchAdapter(this.getBaseContext(),R.layout.track_item)); // 'this' is Activity instance
         trackname.setLoadingIndicator(
                 (android.widget.ProgressBar) findViewById(R.id.loading_indicator));

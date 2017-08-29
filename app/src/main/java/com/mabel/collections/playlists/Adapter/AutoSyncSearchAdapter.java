@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.Inflater;
 
 import retrofit.client.Response;
 
@@ -46,7 +47,7 @@ public class AutoSyncSearchAdapter extends ArrayAdapter implements Filterable {
         super(context,viewResourceId);
         mContext = context;
         this.viewResourceId = viewResourceId;
-        inflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -65,16 +66,16 @@ public class AutoSyncSearchAdapter extends ArrayAdapter implements Filterable {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {
-            convertView = inflater.inflate(viewResourceId, parent, false);
+            convertView = inflater.inflate(viewResourceId, viewGroup, false);
         }
         TextView txtname;
         TextView txtartist_name;
         TextView txtalbum_name;
 
 
-        txtname = (TextView) convertView.findViewById(R.id.entity_title);
+        txtname = (TextView) convertView.findViewById(R.id.track_name);
         txtartist_name = (TextView) convertView.findViewById(R.id.total_song);
         txtalbum_name = (TextView) convertView.findViewById(R.id.entity_album);
 

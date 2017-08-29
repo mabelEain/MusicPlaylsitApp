@@ -19,7 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingRight="8dp"
-        android:imeOptions="flagNoExtractUi|actionSearch"
+        android:imeOptions="actionSearch"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         android:layout_marginStart="8dp"

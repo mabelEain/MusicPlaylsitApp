@@ -3,6 +3,7 @@ package com.mabel.collections.playlists.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mabel.collections.playlists.Model.Playlist;
-import com.mabel.collections.playlists.MyTracksActivity;
+import com.mabel.collections.playlists.Model.Track;
 import com.mabel.collections.playlists.R;
 import com.mabel.collections.playlists.SearchTestActivity;
 import com.squareup.picasso.Picasso;
@@ -21,12 +22,12 @@ import java.util.List;
  * Created by MabelEain on 8/28/2017.
  */
 
-public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder> {
+public class TracksAdapter extends RecyclerView.Adapter<TracksAdapter.ViewHolder> {
 
-    List<Playlist> mItems;
+    List<Track> mItems;
     Context context;
 
-    public PlaylistAdapter(Context context, List<Playlist> playlists) {
+    public TracksAdapter(Context context, List<Track> playlists) {
         super();
         mItems = playlists;
         this.context = context;
@@ -35,7 +36,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.playlist_item, viewGroup, false);
+                .inflate(R.layout.track_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
 
         return viewHolder;
@@ -43,18 +44,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int i) {
-        Playlist item = mItems.get(i);
+        Track item = mItems.get(i);
 
+        Log.d("Adapter", item.id);
         holder.title.setText(item.name);
 
-        holder.subtitle.setText(item.total_song + "songs");
+        holder.artist_name.setText(item.artist_name);
 
-        //Image image = item.images.get(0);
-        if (item.images_url != "") {
-            Picasso.with(context).load(item.images_url).into(holder.image);
-        }
-
-
+        holder.album.setText(item.album_name);
     }
 
     @Override
@@ -65,24 +62,23 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public final TextView title;
-        public final TextView subtitle;
-        public final ImageView image;
+        public final TextView artist_name;
+        public final TextView album;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.entity_title);
-            subtitle = (TextView) itemView.findViewById(R.id.total_song);
-            image = (ImageView) itemView.findViewById(R.id.entity_image);
+            title = (TextView) itemView.findViewById(R.id.track_name);
+            artist_name = (TextView) itemView.findViewById(R.id.total_song);
+            album = (TextView) itemView.findViewById(R.id.entity_album);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             notifyItemChanged(getLayoutPosition());
-            Playlist playlist = mItems.get(getLayoutPosition());
-            Intent intent = new Intent(v.getContext(), MyTracksActivity.class);
-            intent.putExtra("playlist_id",playlist.id);
+            Intent intent = new Intent(v.getContext(), SearchTestActivity.class);
             v.getContext().startActivity(intent);
+            // mListener.onItemSelected(v, mItems.get(getAdapterPosition()));
         }
     }
 

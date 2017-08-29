@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
  * Created by MabelEain on 8/29/2017.
  */
 
-public class SearchAutocompleteView extends AutoCompleteTextView {
+public class SearchAutocompleteView extends AutoCompleteTextView   {
 
     private static final int MESSAGE_TEXT_CHANGED = 100;
     private static final int DEFAULT_AUTOCOMPLETE_DELAY = 750;

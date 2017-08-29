@@ -46,7 +46,7 @@ public interface SpotifyService {
      * Get Playlsit's Tracks
      */
     @GET("/users/{user_id}/playlists/{playlist_id}/tracks")
-    void getPlaylistTracks(@Path("user_id") String userId, @Path("playlist_id") String playlistId, @QueryMap Map<String, Object> options, Callback<JsonObject> callback);
+    void getPlaylistTracks(@Path("user_id") String userId, @Path("playlist_id") String playlistId, Callback<JsonObject> callback);
 
     /**
      * Add track to a Playlist
